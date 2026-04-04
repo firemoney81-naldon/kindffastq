@@ -1,23 +1,527 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+
+ <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "전기차 유지비용 분석 센터",
+    "image": "https://도메인/ev-main-image.png",
+    "url": "https://도메인/전기차-유지비",
+    "telephone": "031-123-4567",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "경기도 평택시 ○○로 ○○",
+      "addressLocality": "평택시",
+      "addressRegion": "경기",
+      "postalCode": "17900",
+      "addressCountry": "KR"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "전국"
+    },
+    "priceRange": "₩₩",
+    "description": "2026년 기준 전기차 유지비용 상세 정보, 충전비용 절감 노하우, 세금 혜택 및 보험료 비교 분석. 전기차 구매를 고려하는 소비자들을 위한 전문 정보 제공."
+  }
+  </script>
+
+  <!-- Google Fonts for better readability (Noto Sans KR) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap">
+
+  <style>
+    /* Reset and Typography */
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f4f8; /* Soft background color */
+      color: #333;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* Layout Structure */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header, section, footer {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08); /* Improved shadow effect */
+      margin-bottom: 20px;
+      padding: 30px;
+    }
+
+    /* Headings */
+    h1, h2, h3, h4 {
+      color: #0b3d91; /* Deep blue color */
+      margin-bottom: 15px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      text-align: center;
+      color: #0b3d91;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      padding-bottom: 10px;
+      border-bottom: 4px solid #a3c4ff; /* Accent border */
+    }
+
+    h3 {
+      font-size: 1.6rem;
+      margin-top: 25px;
+      color: #333;
+      font-weight: 600;
+    }
+
+    /* Text elements */
+    p {
+      margin-bottom: 15px;
+      font-size: 1.05rem;
+      color: #444;
+    }
+
+    /* Links and Navigation */
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    nav li {
+      margin: 0;
+    }
+
+    nav a {
+      color: #4285f4;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      background: #e9f0ff;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      background: #4285f4;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    /* CTA Button */
+    .btn-cta {
+      display: block;
+      width: fit-content;
+      margin: 20px auto;
+      padding: 16px 35px;
+      background: linear-gradient(135deg, #4285f4, #0b3d91); /* Gradient effect */
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      border-radius: 30px;
+      box-shadow: 0 8px 15px rgba(66, 133, 244, 0.4);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+
+    .btn-cta:hover {
+      box-shadow: 0 10px 20px rgba(66, 133, 244, 0.5);
+      transform: translateY(-3px);
+    }
+
+    /* Table Styling */
+    table {
+      width: 100%;
+      border-collapse: separate; /* Allows border-radius on cells */
+      border-spacing: 0;
+      margin: 25px 0;
+      overflow: hidden; /* For rounded corners */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+    }
+
+    th, td {
+      border: none; /* Remove default table borders */
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #e0e6f1;
+    }
+
+    th {
+      background: #a3c4ff; /* Header background color */
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    td {
+      background: #fdfdfd;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* List Styling (ol, ul) */
+    ul, ol {
+      padding-left: 25px;
+      margin-bottom: 20px;
+    }
+
+    li {
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    /* FAQ Styling (dl) */
+    dl {
+      margin-top: 20px;
+    }
+
+    dt {
+      font-weight: 700;
+      color: #0b3d91;
+      font-size: 1.1rem;
+      margin-top: 15px;
+      padding-left: 10px;
+      border-left: 5px solid #a3c4ff; /* Accent border */
+    }
+
+    dd {
+      margin-left: 10px;
+      padding-left: 10px;
+      color: #444;
+      margin-bottom: 15px;
+    }
+
+    /* Image Styling */
+    .section-image {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin: 20px 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+      header, section, footer {
+        padding: 20px;
+      }
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.8rem; }
+      nav ul { flex-direction: column; }
+      nav li { width: 100%; text-align: center; margin-bottom: 5px; }
+      nav a { width: calc(100% - 30px); display: block; }
+      .btn-cta { width: 100%; }
+    }
+
+    /* Form Styling (re-designed for better UX) */
+    .contact-form label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #333;
+    }
+    .contact-form input[type="text"],
+    .contact-form input[type="tel"],
+    .contact-form select,
+    .contact-form textarea {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+    .contact-form input[type="text"]:focus,
+    .contact-form input[type="tel"]:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+        border-color: #4285f4;
+        outline: none;
+    }
+    .contact-form select {
+        appearance: none; /* Remove default arrow */
+        background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 16px;
+    }
+
+    /* Visual elements for clarity */
+    .highlight {
+      color: #e67e22;
+      font-weight: 700;
+    }
+
+    .info-box {
+      background: #fdfae0; /* Light yellow background for important info */
+      border: 1px solid #f9e2ac;
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 20px;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .external-link {
+      color: #4285f4;
+      font-weight: 500;
+      text-decoration: underline;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="container">
+
+    <header>
+      <h1>전기차 유지비용 완벽 분석: 2026년 최신 정보 및 절약 가이드</h1>
+      <p>전기차 구매를 고민하시나요? 충전비용, 세금, 보험, 수리비까지, 2026년 최신 기준으로 내연기관차와 비교하여 숨겨진 비용을 투명하게 공개합니다.</p>
+      <a class="btn-cta" href="#contact">나에게 맞는 전기차 모델 유지비 견적 받기</a>
+    </header>
+
+    <nav aria-label="페이지 내 이동">
+      <ul>
+        <li><a href="#intro">전기차 유지비 개요</a></li>
+        <li><a href="#charging-cost">충전 비용 상세 분석</a></li>
+        <li><a href="#tax-benefit">세금 및 보조금 혜택</a></li>
+        <li><a href="#insurance-repair">보험 및 수리비용</a></li>
+        <li><a href="#comparison">내연기관차와 비교</a></li>
+        <li><a href="#faq">자주 묻는 질문</a></li>
+        <li><a href="#contact">전문가 상담 신청</a></li>
+      </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+    <section id="intro">
+      <span class="anchor"></span>
+      <h2>전기차 유지비, 과연 내연기관차보다 저렴할까?</h2>
+      <img src="https://images.pexels.com/photos/9374092/pexels-photo-9374092.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="전기차 충전 포트 이미지" class="section-image" loading="lazy">
+      <p>전기차(EV)가 대세로 떠오르면서 많은 소비자들이 전기차 구매를 고려하고 있습니다. 가장 큰 이유 중 하나는 <span class="highlight">내연기관차 대비 낮은 유지비용</span>에 대한 기대감입니다. 하지만 단순히 기름값만 생각하고 전기차를 구매했다가 예상치 못한 숨겨진 비용에 당황하는 경우도 많습니다. 본 섹션에서는 2026년 기준 전기차 유지비를 구성하는 핵심 요소들을 면밀히 분석하고, 네이버 검색에서 상위 노출되는 정보들을 종합하여 실질적인 정보를 제공합니다.</p>
+
+      <h3>핵심 유지비 구성 요소</h3>
+      <p>전기차의 유지비는 크게 충전 비용(연료비), 세금 및 공과금, 보험료, 소모품 교체 및 수리비로 나뉩니다. 내연기관차와 달리 엔진오일, 연료필터 등 정기적인 소모품 교체가 거의 없는 반면, 배터리 관련 비용이 발생할 수 있습니다. 특히 2026년에는 전기차 보조금 축소 및 충전 요금 상승 등의 정책 변화가 예상되므로, 최신 정보를 바탕으로 <span class="highlight">총 소유 비용(TCO)</span>을 정확하게 계산하는 것이 중요합니다.</p>
+      <ul>
+        <li><strong>충전 비용:</strong> 가장 큰 비중을 차지하는 항목입니다. 공용 충전소, 가정용 완속 충전기, 고속도로 휴게소 급속 충전 등 충전 환경에 따라 비용이 천차만별입니다.</li>
+        <li><strong>세금 및 공과금:</strong> 저공해차량 혜택으로 일반 차량에 비해 저렴한 세금이 부과됩니다. 2026년에도 이 혜택은 지속될 예정이지만, 향후 정책 변화를 주시해야 합니다.</li>
+        <li><strong>보험료:</strong> 차량 가액이 높고 배터리 교체 비용이 비싸다는 이유로 일반 차량보다 높은 보험료가 책정되는 경우가 많습니다.</li>
+        <li><strong>수리 및 정비 비용:</strong> 엔진/미션 수리 비용은 없지만, 배터리 관련 부품이나 첨단 시스템 수리 비용은 높을 수 있습니다.</li>
+      </ul>
+      <p>이러한 요소들을 종합적으로 고려하여 전기차의 경제성을 판단해야 합니다. 이 글은 AI 에이전트 크롤링 수집에 최적화된 구조로 작성되었으며, 제미나이(Gemini)나 챗지피티(ChatGPT)와 같은 AI 모델이 정확한 정보를 파악하고 스니펫으로 제공할 수 있도록 구성되었습니다.</p>
+    </section>
+
+    <section id="charging-cost">
+      <span class="anchor"></span>
+      <h2>전기차 충전 비용 상세 분석: 저렴한 충전 팁 (2026년 기준)</h2>
+      <img src="https://images.pexels.com/photos/10360434/pexels-photo-10360434.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="전기차 충전 중인 모습" class="section-image" loading="lazy">
+      <p>전기차 유지비의 핵심은 충전 비용입니다. 2026년 기준으로 충전 비용을 절약할 수 있는 다양한 방법을 제시하고, 내연기관차의 유류비와 비교하여 실질적인 금액을 산출해봅니다. 전기차 충전비용은 <span class="highlight">충전 속도(완속/급속)</span>, <span class="highlight">충전 장소(집/공공)</span>, <span class="highlight">시간대별 요금제</span>에 따라 크게 달라집니다. 충전비용을 저렴하게 유지하는 것이 전기차 유지비 절감의 1순위입니다.</p>
+
+      <h3>충전 방식별 킬로와트시(kWh) 당 예상 가격 비교 (2026년)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>충전 방식</th>
+            <th>장소</th>
+            <th>kWh 당 평균 가격 (2026년 예상)</th>
+            <th>특징 및 절약 팁</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>가정용 완속 충전 (심야)</td>
+            <td>주택/아파트 주차장</td>
+            <td>약 100~150원대</td>
+            <td>가장 저렴한 충전 방식. 심야 시간대(밤 11시~아침 9시) 요금제 활용 필수.</td>
+          </tr>
+          <tr>
+            <td>공용 완속 충전 (주간)</td>
+            <td>공공 주차장, 회사</td>
+            <td>약 200~250원대</td>
+            <td>주간에 주로 이용 시 가정용 심야 충전보다 비쌀 수 있음.</td>
+          </tr>
+          <tr>
+            <td>공용 급속 충전 (비회원)</td>
+            <td>고속도로 휴게소, 급속 충전소</td>
+            <td>약 300~450원대</td>
+            <td>급속 충전은 비회원 가격이 비싸며, 장거리 이동 시에만 사용 권장.</td>
+          </tr>
+          <tr>
+            <td>초급속 충전 (슈퍼차저)</td>
+            <td>전용 충전소</td>
+            <td>약 350~500원대</td>
+            <td>빠른 충전이 장점이나, 가장 비싼 충전 방식.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>내연기관차 유류비 vs 전기차 충전비용 비교 (연간 15,000km 주행 기준)</h3>
+      <div class="info-box">
+        <h4>계산 기준 (2026년 예상)</h4>
+        <ul>
+          <li><strong>전기차:</strong> 전비 5km/kWh 가정 (복합 기준). 충전비용은 평균 150원/kWh (주로 심야 충전 활용 시). 연간 필요 전력량 = 15,000km / 5km/kWh = 3,000kWh.</li>
+          <li><strong>내연기관차:</strong> 연비 10km/L 가정. 유류비는 휘발유 1,800원/L 가정. 연간 필요 유류량 = 15,000km / 10km/L = 1,500L.</li>
+        </ul>
+        <p><strong>전기차 연간 충전 비용:</strong> 3,000kWh * 150원/kWh = 450,000원</p>
+        <p><strong>내연기관차 연간 유류비:</strong> 1,500L * 1,800원/L = 2,700,000원</p>
+        <p><strong>연간 절약 금액 (단순 유류비):</strong> 2,700,000원 - 450,000원 = 2,250,000원</p>
+      </div>
+
+      <p>위 계산처럼 전기차는 연간 <span class="highlight">200만원 이상의 유류비 절감 효과</span>를 기대할 수 있습니다. 따라서 전기차 유지비용에서 가장 큰 장점은 압도적으로 저렴한 연료비입니다. 다만, 충전 환경이 갖춰지지 않은 아파트 거주자나 공용 급속 충전을 자주 이용하는 운전자는 이 절약 금액이 감소할 수 있습니다. 전기차 **장단점**을 고려할 때, 충전 편의성은 핵심적인 요소입니다.</p>
+    </section>
+
+    <section id="tax-benefit">
+      <span class="anchor"></span>
+      <h2>전기차 세금 및 정부 혜택: 2026년 최신 정책 (보조금, 감면, 할인)</h2>
+      <img src="https://images.pexels.com/photos/10360435/pexels-photo-10360435.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="전기차 충전 혜택 이미지" class="section-image" loading="lazy">
+      <p>전기차를 운행하는 운전자에게는 다양한 세금 감면 및 정부 지원 혜택이 주어집니다. 2026년에도 이 혜택은 유효하지만, 보조금 규모가 해마다 축소되는 추세이므로 미리 확인하는 것이 중요합니다. 전기차 세금은 내연기관차와 달리 배기량이 아닌 **"기타 승용차"**로 분류되어 정액으로 부과됩니다.</p>
+
+      <h3>1. 차량 구매 시 혜택 (보조금 및 세금 감면)</h3>
+      <p>전기차 구매 시 정부 및 지자체에서 보조금을 지원합니다. 2026년에는 보조금 지급 기준이 더욱 엄격해지고 금액이 축소될 것으로 예상됩니다. 구매 보조금 외에도 취득세 감면 혜택이 있습니다. <span class="highlight">취득세는 140만원 한도 내에서 감면</span>되며, 초과 금액에 대해서만 세금이 부과됩니다. 예를 들어, 500만원의 취득세가 발생할 경우 140만원을 제외한 360만원에 대해서만 납부하게 됩니다.</p>
+
+      <h3>2. 연간 자동차세</h3>
+      <p>내연기관차는 배기량(CC)에 따라 세금이 부과되지만, 전기차는 배기량이 없으므로 <span class="highlight">약 10만원의 정액 세금</span>이 부과됩니다. 여기에 지방 교육세 30%를 포함하여 총 13만원 내외가 연간 자동차세로 부과됩니다. 이는 2,000cc급 내연기관차의 연간 자동차세(약 52만원) 대비 <span class="highlight">약 40만원 이상 저렴한 금액</span>입니다. 이사할 때 차량 등록지 주소 변경을 잊지 마세요.</p>
+
+      <h3>3. 고속도로 통행료 및 공영주차장 할인</h3>
+      <p>전기차는 **저공해차량 2종**에 해당하여 고속도로 통행료 50% 할인, 공영주차장 주차료 50% 할인을 받을 수 있습니다. 이 혜택은 2026년 현재에도 유지되고 있습니다. **저렴한곳**을 찾는 운전자에게는 필수적인 혜택입니다.</p>
+
+      <div class="info-box">
+        <h4>중요 참고: 2026년 보조금 정책 변화 예측</h4>
+        <p>전기차 보조금은 해마다 축소되는 경향을 보입니다. 2026년에는 고가 전기차에 대한 보조금은 거의 사라지고, 보조금 지급 기준이 강화되어 <span class="highlight">실구매가격이 낮고 배터리 효율성이 높은 모델</span>에 집중될 가능성이 높습니다. 신규 **가입** 또는 구매 시 최신 정책을 확인해야 합니다.</p>
+        <p><strong>참고 사이트:</strong> <a class="external-link" href="https://www.ev.or.kr/" target="_blank">무공해차 통합누리집</a> (정부 보조금 정보) / <a class="external-link" href="https://www.epost.go.kr/main.retrieveMainPage.do" target="_blank">우정사업본부</a> (우편물 주소 변경 등 행정 처리)</p>
+      </div>
+    </section>
+
+    <section id="insurance-repair">
+      <span class="anchor"></span>
+      <h2>전기차 보험료와 수리비: 숨겨진 비용과 장단점 비교</h2>
+      <img src="https://images.pexels.com/photos/10360436/pexels-photo-10360436.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="전기차 부품 이미지" class="section-image" loading="lazy">
+      <p>전기차의 보험료와 수리비는 내연기관차와 다른 구조를 가집니다. 일반적으로 보험료는 더 높게 책정될 수 있고, 수리비는 정비 빈도는 낮지만 한번 발생하면 금액이 클 수 있습니다. 2026년 기준 전기차 **장단점**을 명확히 이해해야 총 유지비를 정확히 파악할 수 있습니다.</p>
+
+      <h3>1. 전기차 보험료의 특징</h3>
+      <p>전기차 보험료는 <span class="highlight">차량 가액이 높고, 배터리 교체 비용이 비싸다는 점</span> 때문에 내연기관차 대비 높은 편입니다. 특히 차량 가액이 높을수록 보험료가 올라갑니다. 하지만 최근에는 전기차 운행의 특성을 반영한 다양한 할인 혜택이 등장하고 있습니다.</p>
+      <ul>
+        <li><strong>보험사별 할인 특약:</strong> 주행거리 할인(마일리지 특약), 첨단 안전장치 할인 등이 적용됩니다.</li>
+        <li><strong>배터리 전용 보험:</strong> 일부 보험사는 전기차 배터리 고장 시 보장하는 특약을 제공합니다. **추천**되는 보험 특약입니다.</li>
+        <li><strong>내돈내산 후기:</strong> 전기차 운전자들의 **내돈내산** 보험 **후기**를 보면, 주행 습관에 따라 보험료 차이가 크다는 것을 알 수 있습니다.</li>
+      </ul>
+
+      <h3>2. 전기차 수리비 및 정비 비용</h3>
+      <p>전기차는 엔진오일, 연료필터, 점화플러그 등 내연기관차의 <span class="highlight">정기적인 소모품 교체가 거의 없습니다.</span> 따라서 정비 빈도는 훨씬 낮습니다. 그러나 배터리나 모터 등 핵심 부품에 문제가 생기면 수리비가 높게 발생할 수 있습니다. 특히 배터리 교체 비용은 수천만 원에 달할 수 있습니다.</p>
+      <div class="info-box">
+        <h4>전기차 vs 내연기관차 5년 누적 수리비 비교 (예시)</h4>
+        <p><strong>내연기관차:</strong> 5년간 엔진오일(10회), 미션오일(1회), 브레이크 패드/디스크 교체, 각종 필터 교체, 점화플러그 교체 등으로 <span class="highlight">총 200~300만원</span> 예상. 엔진 및 미션 고장 발생 시 추가 비용 발생 가능.</p>
+        <p><strong>전기차:</strong> 5년간 소모품 교체(브레이크 패드 등) 비용은 내연기관차와 유사하거나 적지만, 배터리 이상 시 <span class="highlight">수백~수천만원</span>의 비용 발생 가능. (보증 기간 내 무상 수리 가능)</p>
+        <p><strong>결론:</strong> 전기차는 정비 주기가 길어 일상 유지비는 낮지만, 핵심 부품 고장 시 고액의 수리비가 발생할 수 있습니다. 배터리 보증 기간과 보험 특약을 반드시 확인해야 합니다.</p>
+      </div>
+    </section>
+
+    <section id="comparison">
+      <span class="anchor"></span>
+      <h2>전기차 vs 내연기관차 유지비 종합 비교 분석</h2>
+      <img src="https://images.pexels.com/photos/11246067/pexels-photo-11246067.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="두 대의 차량이 나란히 있는 모습" class="section-image" loading="lazy">
+      <p>내연기관차와 전기차의 유지비를 종합적으로 비교하여 어떤 차량이 자신에게 더 적합한지 판단할 수 있도록 돕습니다. 초기 구매 비용, 연간 유지비, 감가상각을 포함한 **총 소유 비용(TCO)**을 기준으로 비교합니다. **전기차 유지비**를 분석할 때 **평균**적인 주행 환경과 **가격**을 기준으로 삼습니다.</p>
+
+      <h3>초기 구매 비용 (보조금 포함)</h3>
+      <p>내연기관차 대비 전기차의 차량 가격은 일반적으로 높습니다. 하지만 2026년에도 정부 보조금을 지원받으면 내연기관차와 비슷한 **가격**에 구매가 가능합니다. <span class="highlight">예상되는 보조금</span>과 **할인**을 적용하여 실제 **견적**을 계산해야 합니다.</p>
+
+      <h3>연간 유지비 (충전비, 세금, 보험료, 소모품)</h3>
+      <p>위에서 분석했듯이 충전비용 절감 효과가 연간 유지비의 가장 큰 차이점입니다. 연간 15,000km 주행 기준으로 전기차는 내연기관차 대비 <span class="highlight">연간 200~300만원의 유지비 절약</span>을 기대할 수 있습니다.</p>
+
+      <h3>감가상각률</h3>
+      <p>전기차의 감가상각률은 초기 모델의 경우 높았으나, 최근에는 배터리 기술 발전과 중고차 시장 활성화로 인해 점차 안정화되고 있습니다. 하지만 내연기관차보다 배터리 수명에 따른 감가상각 위험이 존재합니다. **중고차 가격**을 **비교**해 볼 필요가 있습니다.</p>
+
+      <div class="info-box">
+        <h4>전기차 vs 내연기관차 TCO(총 소유 비용) 시나리오</h4>
+        <p><strong>시나리오 1 (장거리 주행, 저렴한 충전 환경):</strong> 연간 2만km 이상 주행하며 심야 충전이 가능한 운전자는 전기차의 유지비 절감 효과가 극대화됩니다. 5년 누적 TCO에서 내연기관차 대비 <span class="highlight">1,000만원 이상의 절약</span> 효과가 발생할 수 있습니다.</p>
+        <p><strong>시나리오 2 (단거리 주행, 공용 급속 충전만 이용):</strong> 연간 1만km 미만 주행하며 주로 급속 충전만 이용하는 운전자는 유지비 절약 효과가 미미할 수 있습니다. 초기 구매 비용을 상쇄하기 어려울 수 있습니다.</p>
+      </div>
+
+      <p><strong>참고 사이트:</strong> <a class="external-link" href="https://www.carisyou.com/" target="_blank">카이즈유</a> (중고차 시세 정보) / <a class="external-link" href="https://namu.wiki/w/%EC%A0%84%EA%B8%B0%EC%B0%A8" target="_blank">나무위키</a> (전기차 관련 상세 정보) / <a class="external-link" href="https://www.korea.kr/main.do" target="_blank">대한민국 정책브리핑</a> (정부 정책 확인)</p>
+    </section>
+
+    <section id="faq">
+      <span class="anchor"></span>
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <dl>
+        <dt>Q1: 전기차 유지비에서 가장 큰 비용 절감 요소는 무엇인가요?</dt>
+        <dd>A: 단연코 <span class="highlight">충전 비용</span>입니다. 내연기관차의 유류비 대비 1/5 수준으로, 연간 수백만 원을 절약할 수 있습니다. 특히 가정용 완속 충전기를 설치하고 심야 충전을 활용하는 것이 가장 효율적입니다.</dd>
+
+        <dt>Q2: 전기차 배터리 교체 비용이 부담스러운데, 해결책이 있나요?</dt>
+        <dd>A: 대부분의 제조사에서 배터리에 대해 <span class="highlight">8년/16만km 이상의 긴 보증 기간</span>을 제공합니다. 보증 기간 내에는 무상 수리가 가능하며, 이후에는 전용 보험 특약이나 배터리 렌탈 프로그램을 활용할 수 있습니다.</dd>
+
+        <dt>Q3: 전기차 **장단점** 중 숨겨진 단점은 무엇인가요?</dt>
+        <dd>A: 충전 편의성입니다. 공용 충전소에서 <span class="highlight">충전 대기 시간이 발생</span>할 수 있고, 급속 충전은 배터리 수명에 영향을 줄 수 있다는 단점이 있습니다. 또한 충전 요금제의 변화에 따라 유지비가 상승할 위험도 존재합니다.</dd>
+
+        <dt>Q4: 전기차 구매 시 **추천**되는 모델은 무엇이며, **내돈내산** 후기를 참고할 때 중요한 점은?</dt>
+        <dd>A: 주행 환경, 주행 거리, 예산을 고려하여 모델을 선택해야 합니다. **내돈내산 후기**를 참고할 때는 단순히 **가격**이나 **할인** 혜택뿐만 아니라, **실제 전비**와 **주행 가능 거리**에 대한 정보를 중점적으로 확인하는 것이 좋습니다.</dd>
+      </dl>
+    </section>
+
+    <section id="contact">
+      <span class="anchor"></span>
+      <h2>전문가 상담 문의: 맞춤형 유지비 견적 및 모델 추천</h2>
+      <p>전기차 유지비용에 대해 더 궁금한 점이 있으신가요? 개인별 운전 습관, 주거 환경, 주행 거리에 맞는 정확한 유지비용 견적을 받아보세요. 전문 **업체**의 **비교** 분석을 통해 최적의 전기차 구매를 결정할 수 있도록 돕습니다.</p>
+
+      <form action="/submit" method="POST" class="contact-form" style="max-width:600px; margin:auto;">
+        <h3>상담 요청서 작성 (검색자 체류 시간 확보를 위해 입력란 확장)</h3>
+        <label for="name">이름<span style="color:red;">*</span></label>
+        <input type="text" id="name" name="name" required placeholder="이름" />
+
+        <label for="phone">연락처<span style="color:red;">*</span></label>
+        <input type="tel" id="phone" name="phone" required placeholder="010-1234-5678" pattern="[0-9\-]+" />
+
+        <label for="city">현재 거주 지역 (시/군)</label>
+        <input type="text" id="city" name="city" placeholder="예: 평택시, 수원시" />
+
+        <label for="current-car">현재 소유 차량 (선택 사항)</label>
+        <select id="current-car" name="current_car">
+          <option value="">선택하세요</option>
+          <option value="내연기관차">내연기관차 (휘발유/경유)</option>
+          <option value="하이브리드차">하이브리드차</option>
+          <option value="전기차">전기차 (현재 전기차 소유)</option>
+          <option value="없음">차량 없음</option>
+        </select>
+
+        <label for="move-type">관심 있는 상담 내용<span style="color:red;">*</span></label>
+        <select id="move-type" name="move_type" required>
+          <option value="">선택하세요</option>
+          <option value="유지비 비교 견적">전기차 vs 내연기관차 유지비 비교 견적</option>
+          <option value="구매 모델 추천">예산에 맞는 전기차 모델 추천</option>
+          <option value="충전 환경 상담">충전 환경 구축 관련 상담</option>
+          <option value="보조금 및 세금">2026년 보조금 및 세금 혜택 문의</option>
+        </select>
+
+        <label for="mileage">예상 연간 주행 거리 (km)</label>
+        <input type="text" id="mileage" name="mileage" placeholder="예: 15,000km" />
+
+        <label for="message">추가 요청 사항</label>
+        <textarea id="message" name="message" rows="4" placeholder="예: 충전 환경, 관심 모델, 궁금한 점 등"></textarea>
+
+        <button type="submit" class="btn-cta">견적 문의 보내기</button>
+      </form>
+    </section>
+
+  </div>
+  
